@@ -1,5 +1,7 @@
 package es.ciudadescolar;
 
+import java.io.Serializable;
+
 /**
  * Clase Modulo que representa un módulo profesional en un sistema escolar.
  * Contiene atributos como el nombre del módulo, horas semanales, profesor, curso y contraseña AV.
@@ -7,7 +9,7 @@ package es.ciudadescolar;
  * @author Mateo Ayarra
  * @version 1.0
  */
-public class Modulo {
+public class Modulo implements Serializable{
     //Módulo profesional|horas semanales|profesor|curso|contraseña AV
     String modulo;
     Double horas;
@@ -117,7 +119,7 @@ public class Modulo {
      */
     @Override
     public String toString() {
-        return "Modulo [modulo=" + modulo + ", horas=" + horas + ", profesor=" + profesor + ", curso=" + curso
-                + ", contrasena=" + contrasena + "]";
+        return modulo + "|" + horas + "|" + profesor + "|" + curso
+                + "|" + contrasena ;
     }
 }
