@@ -13,14 +13,30 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GestorBinario {
+/**
+ * Clase que gestiona la escritura y lectura de objetos de la clase Modulo en un fichero binario
+ *
+ * @author Mateo Ayarra
+ * @version 1.0
+ */
+public class GestorBin {
     private File fichero;
 
-    public GestorBinario(String path) {
+    /**
+     * Metodo de clase que inicializa la clase GestorBin, recibe un String correspondiente a la ubicaciuon del fichero a escribir y genera un atributo de clase de tipo File
+     *
+     * @param path
+     */
+    public GestorBin(String path) {
         this.fichero = new File(path);
     }
 
-    public void writeModulos(List<Modulo> modulos) {
+    /**
+     * Metodo de clase que recibe una lista de modulos y la escribe en el fichero indicado en el atributo de la clase
+     *
+     * @param modulos
+     */
+    public void setModulos(List<Modulo> modulos) {
         FileOutputStream fos = null;
         BufferedOutputStream bos = null;
         ObjectOutputStream oos = null;
@@ -49,7 +65,12 @@ public class GestorBinario {
         }
     }
 
-    public void writeModulo(Modulo modulo) {
+    /**
+     * Metodo de clase que recibe un modulo y la escribe en el fichero indicado en el atributo de la clase
+     *
+     * @param modulos
+     */
+    public void setModulo(Modulo modulo) {
         FileOutputStream fos = null;
         BufferedOutputStream bos = null;
         ObjectOutputStream oos = null;
@@ -75,14 +96,19 @@ public class GestorBinario {
         }
     }
 
-    public List<Modulo> getModulos(String path) {
+    /**
+     * Metodo de clase que recupera los modulos de un fichero binario
+     *
+     * @return
+     */
+    public List<Modulo> getModulos() {
         List<Modulo> modulos = new ArrayList<>();
         FileInputStream fis = null;
         BufferedInputStream bis = null;
         ObjectInputStream ois = null;
 
         try {
-            fis = new FileInputStream(new File(path));
+            fis = new FileInputStream(fichero);
             bis = new BufferedInputStream(fis);
             ois = new ObjectInputStream(bis);
 

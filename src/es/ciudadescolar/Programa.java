@@ -1,10 +1,13 @@
 package es.ciudadescolar;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Clase principal que pone a prueba las utilidades de las clases GestorTxt y GestorBin
+ *
+ * @author Mateo Ayarra
+ * @version 1.0
+ */
 public class Programa {
     public static Scanner sc = new Scanner(System.in);
 
@@ -13,41 +16,28 @@ public class Programa {
         String ficheroTxt = "modulos.txt";
         Integer opc = 0;
         GestorTxt gt = new GestorTxt(ficheroTxt);
-        GestorBinario gb = new GestorBinario(ficheroBin);
+        GestorBin gb = new GestorBin(ficheroBin);
 
         do {
-            try {
-                opc = pedirEntero(
-                        "Introduzca la instruccion(-1. Salir\n1. Introducir modulo en fichero de texto\n2. Introducir modulos en fichero binario\n3. Recuperar modulos del fichero de texto\n4. Recuperar modulos del fichero binario)");
-                switch (opc) {
-                    case -1:
-                        System.out.println("Saliendo del programa. Adios");
-                        break;
-                    case 1:
-                        gt.
-                    generarModulo();
-                        break;
-                    case 2:
-
-                        break;
-                    case 3:
-
-                        break;
-                    case 4:
-
-                        break;
-                    default:
-                        System.out.println("Valor no valido");
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("No has introducido un numero.");
+            opc = pedirEntero("Introduzca la instruccion(-1. Salir\n1. Introducir modulo en fichero de texto\n2. Introducir modulos en fichero binario\n3. Recuperar modulos del fichero de texto\n4. Recuperar modulos del fichero binario)");
+            switch (opc) {
+                case -1 -> System.out.println("Saliendo del programa. Adios");
+                case 1 -> gt.setModulo(generarModulo());
+                case 2 -> gb.setModulo(generarModulo());
+                case 3 -> gt.getModulos();
+                case 4 -> gb.getModulos();
+                default -> System.out.println("Valor no valido");
             }
         } while (opc != -1);
     }
 
+    /**
+     * Metodo que gestiona la inicializacion de un objeto Modulo a traves de consola
+     *
+     * @return
+     */
     public static Modulo generarModulo() {
         Modulo salida;
-        Integer opc = 0;
 
         String modulo;
         Double horas;
@@ -69,6 +59,12 @@ public class Programa {
         return salida;
     }
 
+    /**
+     * Metodo que genera un objeto Integer repitiendo un mensaje pasado por parametro hasta que la salida sea valida
+     *
+     * @param mensaje
+     * @return
+     */
     public static Integer pedirEntero(String mensaje) {
         while (true) {
             Integer salida;
@@ -83,6 +79,13 @@ public class Programa {
             }
         }
     }
+
+    /**
+     * Metodo que genera un objeto Double repitiendo un mensaje pasado por parametro hasta que la salida sea valida
+     *
+     * @param mensaje
+     * @return
+     */
     public static Double pedirDouble(String mensaje) {
         while (true) {
             Double salida;
